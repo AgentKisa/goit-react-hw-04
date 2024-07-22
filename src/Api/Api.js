@@ -19,6 +19,7 @@ export const fetchImage = async (query, page) => {
       query,
       page,
       per_page: 12,
+      orientation: "landscape",
       client_id: "mbIVzLXnl4VjQw86pjNSnYZbw9T2zvmMiYLociwwN-g",
     },
   });

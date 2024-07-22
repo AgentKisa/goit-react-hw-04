@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
+import styles from "./SearchBar.module.css";
 
 export const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState("");
@@ -8,16 +9,10 @@ export const SearchBar = ({ onSearch }) => {
     setQuery(e.target.value);
   };
 
-  //   const notifyError = () =>
-  //     toast.error("Something went wrong!", {
-  //       duration: 4000,
-  //       position: "top-right",
-  //     });
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!query.trim()) {
-      toast.error("No results found.");
+      toast.error("Empty field, enter text!");
       return;
     }
     onSearch(query);
@@ -26,7 +21,7 @@ export const SearchBar = ({ onSearch }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className={styles.searchBar} onSubmit={handleSubmit}>
         <Toaster />
         <input
           type="text"
@@ -34,8 +29,11 @@ export const SearchBar = ({ onSearch }) => {
           placeholder="Search images and photos"
           value={query}
           onChange={handleChange}
+          className={styles.input}
         />
-        <button type="submit">Search</button>
+        <button type="submit" className={styles.button}>
+          Search
+        </button>
       </form>
     </>
   );
